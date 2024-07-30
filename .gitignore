@@ -1,0 +1,6 @@
+/build
+/debug
+/release
+/source/ipBase.csv
+.vscode
+/source/utils.cpp
