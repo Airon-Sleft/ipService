@@ -8,7 +8,7 @@ public:
     Unpacker(const Logger* logger);
     ~Unpacker();
     bool Do(const std::string& zipFilePath, const std::string& fileNameForUnpack);
-    void PrintAll(const Logger* logger, const std::string& zipFilePath);
+    void PrintAll(const std::string& zipFilePath);
 private:
     void CloseAll();
     bool Open(const std::string& zipFilePath);

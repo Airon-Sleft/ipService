@@ -94,7 +94,7 @@ bool Unpacker::Do(const std::string &zipFilePath, const std::string &fileNameFor
     return true;
 }
 
-void Unpacker::PrintAll(const Logger *logger, const std::string &zipFilePath)
+void Unpacker::PrintAll(const std::string &zipFilePath)
 {
     Open(zipFilePath);
     for (int i = 0; i < zip_get_num_entries(zipAchive, ZIP_FL_UNCHANGED); ++i)

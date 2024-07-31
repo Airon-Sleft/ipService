@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
 	Downloader downloader{mainLogger};
 	downloader.Load(path, "curl.zip");
 	Unpacker unpacker(mainLogger);
+	unpacker.PrintAll("curl.zip");
 	unpacker.Do("curl.zip", "BUILD-HASHES.txt");
 	return 0;
 }
