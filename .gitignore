@@ -4,3 +4,5 @@
 /source/ipBase.csv
 .vscode
 /source/future_fueatures.cpp
+vcpkg.json
+vcpkg-configuration.json

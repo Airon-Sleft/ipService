@@ -61,7 +61,7 @@ std::string Unpacker::GetFileName(const std::string &fullFilePath)
 
 bool Unpacker::Do(const std::string &zipFilePath, const std::string &fileNameForUnpack)
 {
-    Open(zipFilePath);
+    if (!Open(zipFilePath)) return false;
     for (int i = 0; i < zip_get_num_entries(zipAchive, ZIP_FL_UNCHANGED); i++)
     {
         zip_stat_index(zipAchive, i, 0, &zipStat);

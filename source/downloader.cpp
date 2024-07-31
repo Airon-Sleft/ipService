@@ -16,7 +16,7 @@ Downloader::~Downloader()
 
 bool Downloader::Load(const std::string_view& urlPath, const std::string_view& savePathFile)
 {
-	std::ofstream file = std::ofstream(savePathFile.data());
+	std::ofstream file = std::ofstream(savePathFile.data(), std::ios::out | std::ios::binary);
 
 	curl_easy_setopt(curl, CURLOPT_URL, urlPath.data());
 	curl_easy_setopt(curl, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36");

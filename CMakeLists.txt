@@ -18,4 +18,4 @@ include_directories(${CMAKE_SOURCE_DIR}/source/include/extern)
 include_directories(${CMAKE_SOURCE_DIR}/source/include/)
 target_link_libraries(ipService PRIVATE ${CURL_LIBRARIES})
 
-configure_file(${CMAKE_SOURCE_DIR}/source/ipBase.csv ipBase.csv COPYONLY)
+#configure_file(${CMAKE_SOURCE_DIR}/source/ipBase.csv ipBase.csv COPYONLY)

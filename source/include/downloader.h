@@ -4,6 +4,7 @@
 #include <vector>
 #include <zip.h>
 #include <logger.h>
+#include <utils.h>
 
 class Downloader
 {
