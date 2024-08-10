@@ -10,6 +10,7 @@
 #include <future>
 #include <unpacker.h>
 #include <utils.h>
+#include <geo_db_checker.h>
 
 #include <console_logger.h>
 
@@ -34,12 +35,9 @@ int main(int argc, char *argv[])
 	sp.PrintCurrent(mainLogger, Stopwatch::TIME_TYPE::NANO_SECONDS);
 	cout << "Country:" << country << endl;	
 
-	// const char* path = "https://www.ip2location.com/download/?token=1OmoltRoZRfZO6DLt6QqFNTkD7uOceswVygASjNTW2bm5kvLQfJXL3wvbGqchheq&file=DB9LITECSV";
-	const char* path = "https://curl.se/windows/dl-8.9.0_1/curl-8.9.0_1-win64-mingw.zip";
-	Downloader downloader{mainLogger};
-	downloader.Load(path, "curl.zip");
-	Unpacker unpacker(mainLogger);
-	unpacker.PrintAll("curl.zip");
-	unpacker.Do("curl.zip", "BUILD-HASHES.txt");
+	GeoDBChecker geoDBChecker(mainLogger);
+	bool result = geoDBChecker.Start();
+	if (!result)	mainLogger->Log("NO STARTed");
+	else mainLogger->Log("Initialization is okay");
 	return 0;
 }

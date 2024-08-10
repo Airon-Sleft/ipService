@@ -14,8 +14,9 @@ Downloader::~Downloader()
     curl_easy_cleanup(curl);
 }
 
-bool Downloader::Load(const std::string_view& urlPath, const std::string_view& savePathFile)
+bool Downloader::Load(const std::string_view& urlPath, const std::string_view& savePathFile, const u_int32_t timeOutInMilliseconds) const
 {
+	logger->Log(savePathFile.data());
 	std::ofstream file = std::ofstream(savePathFile.data(), std::ios::out | std::ios::binary);
 
 	curl_easy_setopt(curl, CURLOPT_URL, urlPath.data());
@@ -25,6 +26,8 @@ bool Downloader::Load(const std::string_view& urlPath, const std::string_view& s
 	curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
 	curl_easy_setopt(curl, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_2_0);
 	curl_easy_setopt(curl, CURLOPT_CA_CACHE_TIMEOUT, 604800L);
+	if (timeOutInMilliseconds > 0)
+		curl_easy_setopt(curl, CURLOPT_TIMEOUT_MS, timeOutInMilliseconds);
 
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 

@@ -7,7 +7,7 @@ class Unpacker {
 public:
     Unpacker(const Logger* logger);
     ~Unpacker();
-    bool Do(const std::string& zipFilePath, const std::string& fileNameForUnpack);
+    bool Do(const std::string& zipFilePath, const std::string& fileNameForUnpack, const std::string& directory);
     void PrintAll(const std::string& zipFilePath);
 private:
     void CloseAll();

@@ -59,9 +59,9 @@ std::string Unpacker::GetFileName(const std::string &fullFilePath)
     return result;
 }
 
-bool Unpacker::Do(const std::string &zipFilePath, const std::string &fileNameForUnpack)
+bool Unpacker::Do(const std::string &zipFilePath, const std::string &fileNameForUnpack, const std::string& directory)
 {
-    if (!Open(zipFilePath)) return false;
+    if (!Open(directory + zipFilePath)) return false;
     for (int i = 0; i < zip_get_num_entries(zipAchive, ZIP_FL_UNCHANGED); i++)
     {
         zip_stat_index(zipAchive, i, 0, &zipStat);
@@ -74,7 +74,7 @@ bool Unpacker::Do(const std::string &zipFilePath, const std::string &fileNameFor
     }
     if (zipStat.valid == 0)
     {
-        std::string message("File " + fileNameForUnpack + " not found in Archive: " + zipFilePath );
+        std::string message("File " + fileNameForUnpack + " not found in Archive: " + directory + zipFilePath );
         logger->Log(message);
         return false;
     }
@@ -82,13 +82,13 @@ bool Unpacker::Do(const std::string &zipFilePath, const std::string &fileNameFor
     zipFile = zip_fopen(zipAchive, zipStat.name, ZIP_FL_UNCHANGED);
     if (!zipFile || zip_fread(zipFile, content.get(), zipStat.size) == -1)
     {
-        logger->Log("Unexpected error when read file" + fileNameForUnpack + " in Archive: " + zipFilePath);
+        logger->Log("Unexpected error when read file" + fileNameForUnpack + " in Archive: " + directory + zipFilePath);
         return false;
     }
     CloseAll();
-    if (!WriteToFile(fileNameForUnpack, content.get(), zipStat.size))
+    if (!WriteToFile(directory + fileNameForUnpack, content.get(), zipStat.size))
     {
-        logger->Log("Error when write data to file " + fileNameForUnpack);
+        logger->Log("Error when write data to file " + directory + fileNameForUnpack);
         return false;
     }
     return true;
