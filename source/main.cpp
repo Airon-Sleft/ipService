@@ -13,14 +13,17 @@
 #include <geo_db_checker.h>
 
 #include <console_logger.h>
+#include <configuration.h>
 
 static Logger* mainLogger;
+static Configuration* mainConfig;
 
 int main(int argc, char *argv[])
 {
 	using namespace std;
 	ConsoleLogger logger;
 	mainLogger = &logger;
+	mainConfig = Configuration::getInstance();
 	GeoBase geoBase;
 	Stopwatch sp;
 	sp.Start();

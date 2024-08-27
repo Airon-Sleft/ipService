@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project(ipService)
 
-add_executable(ipService source/main.cpp source/geoBase.cpp source/downloader.cpp source/unpacker.cpp source/console_logger.cpp source/utils.cpp source/geo_db_checker.cpp)
+add_executable(ipService source/main.cpp source/geoBase.cpp source/downloader.cpp source/unpacker.cpp source/console_logger.cpp source/utils.cpp source/geo_db_checker.cpp source/configuration.cpp)
 
 set(CMAKE_CXX_STANDARD 17)
 set_target_properties(${TARGET} PROPERTIES
